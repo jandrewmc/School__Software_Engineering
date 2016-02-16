@@ -6,7 +6,7 @@ namespace JazInterpreter
 	{
 		public BaseException(string type, string message, ExitCode code)
 		{
-			Console.Error.WriteLine(string.Format("{0} : {1}", type, message));
+			Console.Error.WriteLine($"{type} : {message}");
 
 			Environment.Exit((int) code);
 		}
