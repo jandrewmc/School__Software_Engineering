@@ -4,17 +4,17 @@ using NUnit.Framework;
 
 namespace JazInterpreter.Tests
 {
-	[TestFixture()]
+	[TestFixture]
 	public class StackManipulationTests
 	{
 		private TestStackManipulation module;
 
-		[SetUp()]
+		[SetUp]
 		public void SetUp() {
 			module = new TestStackManipulation();
 		}
 
-		[Test()]
+		[Test]
 		public void PushPushesTheItemToTheStack() {
 			int itemToPush = 20;
 
@@ -23,7 +23,7 @@ namespace JazInterpreter.Tests
 			Assert.That(module.InternalStack.Pop(), Is.EqualTo(itemToPush));
 		}
 
-		[Test()]
+		[Test]
 		public void RValuePushesTheIdentifiersValueToTheStack() {
 			var expected = 100;
 			Identifier identifier = new Identifier {
@@ -35,7 +35,7 @@ namespace JazInterpreter.Tests
 			Assert.That(module.InternalStack.Pop(), Is.EqualTo(expected));
 		}
 
-		[Test()]
+		[Test]
 		public void LValuePushesTheIdentifierToTheStack() {
 			Identifier expected = new Identifier();
 
@@ -44,9 +44,13 @@ namespace JazInterpreter.Tests
 			Assert.That(module.InternalStack.Pop(), Is.SameAs(expected));
 		}
 
-		// error handling for pop
+		[Test]
+		[Ignore("Windows only")]
+		public void PopThrowsAnExceptionWhenTheStackIsEmpty() {
+			Assert.Throws<UnderflowException>(() => module.Pop());
+		}
 
-		[Test()]
+		[Test]
 		public void ColonEqualsAssignsTheMostRecentlyPushedValueToTheMostPreviouslyPushedIdentifier() {
 			Identifier identifier = new Identifier();
 			int expected = 50;
@@ -58,7 +62,16 @@ namespace JazInterpreter.Tests
 			Assert.That(identifier.Value, Is.EqualTo(expected));
 		}
 
-		[Test()]
+		[Test]
+		[Ignore("Windows only")]
+		public void ColonEqualsThrowsAMissingLValueExceptionWhenTheSecondMostElementIsNotAnIdentifier() {
+			module.Push(5);
+			module.Push(6);
+
+			Assert.Throws<MissingLValueException>(() => module.ColonEquals());
+		}
+
+		[Test]
 		public void CopyCopiesTheTopElementOfTheStack() {
 			int value = 10;
 			module.Push(value);

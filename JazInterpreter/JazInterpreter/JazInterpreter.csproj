@@ -38,6 +38,13 @@
     <Compile Include="StackManipulation.cs" />
     <Compile Include="IStackManipulation.cs" />
     <Compile Include="Identifier.cs" />
+    <Compile Include="ErrorHandling\UnderflowException.cs" />
+    <Compile Include="ErrorHandling\MissingLValueException.cs" />
+    <Compile Include="ErrorHandling\ExitCode.cs" />
+    <Compile Include="ErrorHandling\BaseException.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="ErrorHandling\" />
+  </ItemGroup>
 </Project>

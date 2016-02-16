@@ -25,14 +25,22 @@ namespace JazInterpreter
 		}
 
 		public void Pop() {
+			if (Stack.Count == 0) {
+				throw new UnderflowException();
+			}
+
 			Stack.Pop();
 		}
 
 		public void ColonEquals() {
-			int value = (int) Stack.Pop();
-			Identifier identifier = (Identifier) Stack.Pop();
+			try {
+				int value = (int) Stack.Pop();
+				Identifier identifier = (Identifier) Stack.Pop();
 
-			identifier.Value = value;
+				identifier.Value = value;
+			} catch (InvalidCastException) {
+				throw new MissingLValueException();
+			}
 		}
 
 		public void Copy() {
