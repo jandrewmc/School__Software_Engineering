@@ -44,6 +44,8 @@
     <Compile Include="ErrorHandling\BaseException.cs" />
     <Compile Include="ArithmeticOperators.cs" />
     <Compile Include="IArithmeticOperators.cs" />
+    <Compile Include="ILogicalOperators.cs" />
+    <Compile Include="LogicalOperators.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

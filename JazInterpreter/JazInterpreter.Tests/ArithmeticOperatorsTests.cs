@@ -68,4 +68,3 @@ namespace JazInterpreter.Tests
 		}
 	}
 }
-

@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="StackManipulationTests.cs" />
     <Compile Include="ArithmeticOperatorsTests.cs" />
+    <Compile Include="LogicalOperatorsTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JazInterpreter\JazInterpreter.csproj">
