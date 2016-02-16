@@ -8,7 +8,7 @@ namespace JazInterpreter
 		{
 			Console.Error.WriteLine($"{type} : {message}");
 
-			Environment.Exit((int) code);
+			Environment.ExitCode = (int) code;
 		}
 	}
 }

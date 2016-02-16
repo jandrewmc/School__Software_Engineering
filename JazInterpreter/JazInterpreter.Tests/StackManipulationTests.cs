@@ -45,7 +45,6 @@ namespace JazInterpreter.Tests
 		}
 
 		[Test]
-		[Ignore("Windows only")]
 		public void PopThrowsAnExceptionWhenTheStackIsEmpty() {
 			Assert.Throws<UnderflowException>(() => module.Pop());
 		}
@@ -63,7 +62,6 @@ namespace JazInterpreter.Tests
 		}
 
 		[Test]
-		[Ignore("Windows only")]
 		public void ColonEqualsThrowsAMissingLValueExceptionWhenTheSecondMostElementIsNotAnIdentifier() {
 			module.Push(5);
 			module.Push(6);
