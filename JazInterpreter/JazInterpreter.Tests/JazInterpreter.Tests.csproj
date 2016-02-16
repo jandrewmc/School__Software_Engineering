@@ -38,6 +38,12 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="StackManipulation\" />
+    <Compile Include="StackManipulationTests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JazInterpreter\JazInterpreter.csproj">
+      <Project>{DD1C35F6-81E4-46B5-BAF7-50CDB544F5B3}</Project>
+      <Name>JazInterpreter</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

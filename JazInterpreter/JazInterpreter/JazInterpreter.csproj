@@ -35,9 +35,9 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="JazInterpreter.cs" />
+    <Compile Include="StackManipulation.cs" />
+    <Compile Include="IStackManipulation.cs" />
+    <Compile Include="Identifier.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup>
-    <Folder Include="StackManipulation\" />
-  </ItemGroup>
 </Project>
