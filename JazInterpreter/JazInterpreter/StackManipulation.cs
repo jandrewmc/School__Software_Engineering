@@ -32,6 +32,14 @@ namespace JazInterpreter
 			Stack.Pop();
 		}
 
+		public int Peek() {
+			if (Stack.Count == 0) {
+				throw new UnderflowException();
+			}
+
+			return (int) Stack.Peek();
+		}
+
 		public void ColonEquals() {
 			try {
 				int value = (int) Stack.Pop();

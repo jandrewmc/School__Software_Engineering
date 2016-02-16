@@ -42,6 +42,8 @@
     <Compile Include="ErrorHandling\MissingLValueException.cs" />
     <Compile Include="ErrorHandling\ExitCode.cs" />
     <Compile Include="ErrorHandling\BaseException.cs" />
+    <Compile Include="ArithmeticOperators.cs" />
+    <Compile Include="IArithmeticOperators.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -12,6 +12,8 @@ namespace JazInterpreter
 
 		void Pop();
 
+		int Peek();
+
 		void ColonEquals();
 
 		void Copy();

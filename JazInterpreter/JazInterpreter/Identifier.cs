@@ -4,7 +4,7 @@ namespace JazInterpreter
 {
 	public class Identifier
 	{
-		public object Value { get; set; }
+		public int Value { get; set; }
 	}
 }
 

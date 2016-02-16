@@ -50,6 +50,21 @@ namespace JazInterpreter.Tests
 		}
 
 		[Test]
+		public void PeekReturnsTheTopElementOnTheStack() {
+			int expected = 800;
+			module.Push(expected);
+
+			int actual = module.Peek();
+
+			Assert.That(actual, Is.EqualTo(expected));
+		}
+
+		[Test]
+		public void PeekThrowsAnExceptionWhenTheStackIsEmpty() {
+			Assert.Throws<UnderflowException>(() => module.Peek());
+		}
+
+		[Test]
 		public void ColonEqualsAssignsTheMostRecentlyPushedValueToTheMostPreviouslyPushedIdentifier() {
 			Identifier identifier = new Identifier();
 			int expected = 50;
