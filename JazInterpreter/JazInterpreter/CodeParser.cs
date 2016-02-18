@@ -2,7 +2,7 @@
 
 namespace JazInterpreter
 {
-	public class CodeParser
+	public class CodeParser : ICodeParser
 	{
 		public CodeParser ()
 		{

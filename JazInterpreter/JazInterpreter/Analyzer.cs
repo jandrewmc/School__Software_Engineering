@@ -2,7 +2,7 @@
 
 namespace JazInterpreter
 {
-	public class Analyzer
+	public class Analyzer : IAnalyzer
 	{
 		public Analyzer ()
 		{

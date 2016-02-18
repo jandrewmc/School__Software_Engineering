@@ -2,7 +2,7 @@
 
 namespace JazInterpreter
 {
-	public class SyntaxValidator
+	public class SyntaxValidator : ISyntaxValidator
 	{
 		public SyntaxValidator ()
 		{
@@ -25,7 +25,7 @@ namespace JazInterpreter
 					}
 					if (!found) 
 					{
-						//throw an error
+						throw new SyntaxError ("No label found that matches " + labelToLookFor);
 						System.Console.WriteLine ("You broke it");
 					}
 				}
@@ -43,20 +43,24 @@ namespace JazInterpreter
 					callCount++;
 				if (code [i, 0] == "end") {
 					count--;
-					if (callCount > 1) {
-						//throw error
+					if (callCount > 1) 
+					{
+						throw new SyntaxError ("More than one call contained in a begin/end block");
 						System.Console.WriteLine ("error in call count");
 					}
 					callCount = 0;
 				}
 
-				if (count > 1 || count < 0) {
-					//throw an error 
-					System.Console.WriteLine ("You broke it again");
+				if (count > 1) 
+				{
+					throw new SyntaxError ("Found successive begin statements without a corresponding end statement");
+				}
+				if (count < 0) {
+					throw new SyntaxError ("Found and additional end statement without a preceeding begin statement");
 				}
 			}
 			if (count != 0) {
-				//throw an error
+				//TODO: Throw an Error
 				System.Console.WriteLine ("You majorly broke it");
 			}
 		}
