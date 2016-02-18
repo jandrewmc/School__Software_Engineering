@@ -5,10 +5,10 @@ namespace JazInterpreter
 {
 	public class SymbolsTable : ISymbolsTable
 	{
-		public Dictionary<string, int>[] variableTable;
-		public Dictionary<string, int> labelTable;
+		public static Dictionary<string, int>[] variableTable;
+		public static Dictionary<string, int> labelTable;
 
-		public SymbolsTable()
+		public static void initializeSymbolsTable()
 		{
 			//TODO: maximum supported symbols table depth is currently 20
 			variableTable = new Dictionary<string,int>[] 
@@ -37,7 +37,7 @@ namespace JazInterpreter
 			labelTable = new Dictionary<string, int> ();			
 		}
 
-		private void buildVariableTable(string[,] code)
+		private static void buildVariableTable(string[,] code)
 		{
 			//every lvalue in the table
 			for (int i = 0; i < code.GetLength(0); i++)
@@ -52,7 +52,7 @@ namespace JazInterpreter
 			}
 		}
 
-		private void buildLabelTable(string[,] code)
+		private static void buildLabelTable(string[,] code)
 		{
 			//every label in the table needs an entry in the symbols table
 			for (int i = 0; i < code.GetLength(0); i++)
@@ -65,8 +65,10 @@ namespace JazInterpreter
 			}
 		}
 
-		public void buildSymbolTable(string[,] code)
+		public static void buildSymbolTable(string[,] code)
 		{
+			initializeSymbolsTable ();
+
 			buildSymbolTable (code);
 			buildLabelTable (code);
 		}

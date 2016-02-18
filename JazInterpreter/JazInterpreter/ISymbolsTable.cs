@@ -5,7 +5,6 @@ namespace JazInterpreter
 {
 	public interface ISymbolsTable
 	{
-		void buildSymbolTable (string[,] code);
 	}
 }
 	
