@@ -46,6 +46,12 @@
     <Compile Include="IArithmeticOperators.cs" />
     <Compile Include="ILogicalOperators.cs" />
     <Compile Include="LogicalOperators.cs" />
+    <Compile Include="ICodeParser.cs" />
+    <Compile Include="CodeParser.cs" />
+    <Compile Include="IAnalyzer.cs" />
+    <Compile Include="Analyzer.cs" />
+    <Compile Include="ISyntaxValidator.cs" />
+    <Compile Include="SyntaxValidator.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
