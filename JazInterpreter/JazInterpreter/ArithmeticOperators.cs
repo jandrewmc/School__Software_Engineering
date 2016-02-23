@@ -11,7 +11,8 @@ namespace JazInterpreter
 			this.stackManipulation = stackManipulation;
 		}
 
-		public void Add() {
+		public void Add() 
+		{
 			var values = GetTopTwoValues();
 
 			stackManipulation.Push(values.Item1 + values.Item2);
@@ -24,7 +25,8 @@ namespace JazInterpreter
 			return Tuple.Create(value2, value1);
 		}
 
-		private int GetAndRemoveTopOfStack() {
+		private int GetAndRemoveTopOfStack() 
+		{
 			int value = stackManipulation.Peek();
 			stackManipulation.Pop();
 

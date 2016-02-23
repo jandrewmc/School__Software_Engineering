@@ -11,14 +11,6 @@ namespace JazInterpreter
 			this.stackManipulation = stackManipulation;
 		}
 
-		public void And() {
-			var values = GetTopTwoValues();
-
-			bool result = Convert.ToBoolean(values.Item1) && Convert.ToBoolean(values.Item2);
-
-			stackManipulation.Push(Convert.ToInt32(result));
-		}
-
 		private Tuple<int, int> GetTopTwoValues() {
 			int firstValue = PeekAndPop();
 			int secondValue = PeekAndPop();
@@ -33,12 +25,30 @@ namespace JazInterpreter
 			return value;
 		}
 
-		public void Not() {
-			
+		public void And() {
+			var values = GetTopTwoValues();
+
+			bool result = Convert.ToBoolean(values.Item1) && Convert.ToBoolean(values.Item2);
+
+			stackManipulation.Push(Convert.ToInt32(result));
 		}
 
-		public void Or() {
-			
+		public void Not() 
+		{
+			int value = PeekAndPop ();
+
+			bool result = !Convert.ToBoolean (value);
+
+			stackManipulation.Push (Convert.ToInt32 (result));
+		}
+
+		public void Or() 
+		{
+			var values = GetTopTwoValues ();
+
+			bool result = Convert.ToBoolean (values.Item1) || Convert.ToBoolean (values.Item2);
+
+			stackManipulation.Push (Convert.ToInt32 (result));
 		}
 	}
 }

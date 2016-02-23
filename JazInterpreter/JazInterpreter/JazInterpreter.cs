@@ -28,12 +28,18 @@ namespace JazInterpreter
 		public static void Main(string[] args) 
 		{
 			StackManipulation stack = new StackManipulation ();
+			ArithmeticOperators arOp = new ArithmeticOperators (stack);
+			LogicalOperators loOp = new LogicalOperators (stack);
+			RelationalOperators relOp = new RelationalOperators (stack);
+			Output output = new Output (stack);
+
 			string filename = (new JazInterpreter()).getFileName (args);
 			string[,] array = (new CodeParser ()).parse (filename);
 			(new Analyzer ()).analyze (array);
 
 			int instructionPointer = 0;
 			int currentLevel = 0;
+			bool relOpResult = false;
 
 			while (true)
 			{
@@ -43,15 +49,18 @@ namespace JazInterpreter
 					stack.Push (Int32.Parse(array [instructionPointer, 1]));
 					break;
 				case "rvalue":
+					//TODO:  Not sure about this
 					stack.RValue (array [instructionPointer, 1], currentLevel);
 					break;
 				case "lvalue":
+					//TODO: Not sure about this
 					stack.LValue (array [instructionPointer, 1]);
 					break;
 				case "pop":
 					stack.Pop ();
 					break;
 				case ":=":
+					//TODO:  need to figure this one out
 					break;
 				case "copy":
 					stack.Copy ();
@@ -60,53 +69,78 @@ namespace JazInterpreter
 					System.Console.Write ("SHOULDNT GET HERE");
 					break;
 				case "goto":
-					
+					instructionPointer = ControlFlow.Goto (array [instructionPointer, 1]);
 					break;
 				case "gofalse":
+					if (!relOpResult)
+						instructionPointer = ControlFlow.Gofalse (array [instructionPointer, 1]);
 					break;
 				case "gotrue":
+					if (relOpResult)
+						instructionPointer = ControlFlow.Gotrue (array [instructionPointer, 1]);
 					break;
 				case "halt":
+					//TODO: not sure how to handle this yet
 					break;
 				case "+":
+					arOp.Add ();
 					break;
 				case "-":
+					arOp.Subtract ();
 					break;
 				case "*":
+					arOp.Multiply ();
 					break;
 				case "/":
+					arOp.Divide ();
 					break;
 				case "div":
+					arOp.Mod ();
 					break;
 				case "&":
+					loOp.And ();	
 					break;
 				case "!":
+					loOp.Not ();
 					break;
 				case "|":
+					loOp.Or ();
 					break;
 				case "<>":
+					relOpResult = relOp.equal ();				
 					break;
 				case "<=":
+					relOpResult = relOp.lessThanOrEqualTo ();
 					break;
 				case ">=":
+					relOpResult = relOp.greaterThanOrEqualTo ();
 					break;
 				case "<":
+					relOpResult = relOp.lessThan ();
 					break;
 				case ">":
+					relOpResult = relOp.greaterThan ();
 					break;
 				case "=":
+					relOpResult = relOp.otherEqual ();
 					break;
 				case "print":
+					output.print ();
 					break;
 				case "show":
+					output.show (array [instructionPointer, 1]);
 					break;
 				case "begin":
+					//TODO: gonna be ugly
 					break;
 				case "end":
+					//TODO: gonna be ugly
 					break;
 				case "return":
+					//TODO: gonna be ugly
 					break;
 				case "call":
+					//TODO: gonna be ugly
 					break;
 				default:
 					break;

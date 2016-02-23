@@ -54,8 +54,13 @@
     <Compile Include="Interfaces\IStackManipulation.cs" />
     <Compile Include="Interfaces\ISyntaxValidator.cs" />
     <Compile Include="SymbolsTable.cs" />
-    <Compile Include="ISymbolsTable.cs" />
-    <Compile Include="IControlFlow.cs" />
+    <Compile Include="ControlFlow.cs" />
+    <Compile Include="Interfaces\IControlFlow.cs" />
+    <Compile Include="Interfaces\ISymbolsTable.cs" />
+    <Compile Include="Interfaces\IRelationalOperators.cs" />
+    <Compile Include="RelationalOperators.cs" />
+    <Compile Include="Interfaces\IOutput.cs" />
+    <Compile Include="Output.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
