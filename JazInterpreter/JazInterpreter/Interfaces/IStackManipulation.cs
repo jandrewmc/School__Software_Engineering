@@ -2,21 +2,21 @@
 
 namespace JazInterpreter
 {
-	public interface IStackManipulation
-	{
-		void Push(int value);
+    public interface IStackManipulation
+    {
+        void Push(int value);
 
-		void RValue(Identifier identifier);
+        void RValue(Identifier identifier);
 
-		void LValue(Identifier identifier);
+        void LValue(Identifier identifier);
 
-		void Pop();
+        void Pop();
 
-		int Peek();
+        object Peek();
 
-		void ColonEquals();
+        void ColonEquals();
 
-		void Copy();
-	}
+        void Copy();
+    }
 }
 

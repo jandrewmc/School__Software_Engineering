@@ -2,32 +2,32 @@
 
 namespace JazInterpreter
 {
-	public class Output :IOutput
-	{
-		private readonly IStackManipulation stackManipulation;
+    public class Output :IOutput
+    {
+        private readonly IStackManipulation stackManipulation;
 
-		public Output (IStackManipulation stackManipulation)
-		{
-			this.stackManipulation = stackManipulation;
-		}
+        public Output(IStackManipulation stackManipulation)
+        {
+            this.stackManipulation = stackManipulation;
+        }
 
-		private int PeekAndPop()
-		{
-			int value = stackManipulation.Peek ();
-			stackManipulation.Pop ();
+        private int PeekAndPop()
+        {
+            int value = (int)stackManipulation.Peek();
+            stackManipulation.Pop();
 
-			return value;
-		}
+            return value;
+        }
 
-		public void print ()
-		{
-			System.Console.WriteLine (PeekAndPop ());
-		}
+        public void print()
+        {
+            System.Console.WriteLine(PeekAndPop());
+        }
 
-		public void show (string line)
-		{
-			System.Console.WriteLine (line);
-		}
-	}
+        public void show(string line)
+        {
+            System.Console.WriteLine(line);
+        }
+    }
 }
 

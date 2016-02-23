@@ -3,58 +3,71 @@ using System.Collections;
 
 namespace JazInterpreter
 {
-	public class StackManipulation : IStackManipulation
-	{
-		protected Stack Stack { get; set; }
+    public class StackManipulation : IStackManipulation
+    {
+        protected Stack Stack { get; set; }
 
-		public StackManipulation()
-		{
-			Stack = new Stack();
-		}
+        public StackManipulation()
+        {
+            Stack = new Stack();
+        }
 
-		public void Push(int value) {
-			Stack.Push(value);
-		}
+        public void Push(int value)
+        {
+            Stack.Push(value);
+        }
 
-		public void RValue(Identifier identifier) {
-			Stack.Push(identifier);
-		}
+        public void RValue(Identifier identifier)
+        {
+            Stack.Push(identifier.Value);
+        }
 
-		public void LValue(Identifier identifier) {
-			Stack.Push(identifier.Value);
-		}
+        public void LValue(Identifier identifier)
+        {
+            Stack.Push(identifier);
+        }
 
-		public void Pop() 
-		{
-			if (Stack.Count == 0) {
-				throw new UnderflowException();
-			}
+        public void Pop()
+        {
+            if (Stack.Count == 0)
+            {
+                throw new UnderflowException();
+            }
 
-			Stack.Pop();
-		}
+            Stack.Pop();
+        }
 
-		public int Peek() {
-			if (Stack.Count == 0) {
-				throw new UnderflowException();
-			}
+        public object Peek()
+        {
+            if (Stack.Count == 0)
+            {
+                throw new UnderflowException();
+            }
 
-			return (int) Stack.Peek();
-		}
+            return Stack.Peek();
+        }
 
-		public void ColonEquals() {
-			try {
-				int value = (int) Stack.Pop();
-				Identifier identifier = (Identifier) Stack.Pop();
+        public void ColonEquals()
+        {
+            try
+            {
+                int value = (int)Stack.Peek();
+                Stack.Pop();
+                Identifier identifier = (Identifier)Stack.Peek();
+                Stack.Pop();
 
-				identifier.Value = value;
-			} catch (InvalidCastException) {
-				throw new MissingLValueException();
-			}
-		}
+                identifier.Value = value;
+            }
+            catch (InvalidCastException)
+            {
+                throw new MissingLValueException();
+            }
+        }
 
-		public void Copy() {
-			Stack.Push(Stack.Peek());
-		}
-	}
+        public void Copy()
+        {
+            Stack.Push(Stack.Peek());
+        }
+    }
 }
 
