@@ -60,7 +60,7 @@ namespace JazInterpreter
 				if (code[i, 0] == "label")
 				{
 					//add the name of the label and the first line of code after the label
-					labelTable.Add (code [i, 1], i + 1);
+					labelTable.Add (code [i, 1], i);
 				}
 			}
 		}

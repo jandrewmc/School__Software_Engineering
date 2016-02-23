@@ -6,9 +6,9 @@ namespace JazInterpreter
 	{
 		void Push(int value);
 
-		void RValue(Identifier identifier);
+		void RValue(string identifier, int level);
 
-		void LValue(Identifier identifier);
+		void LValue(string identifier);
 
 		void Pop();
 

@@ -55,6 +55,7 @@
     <Compile Include="Interfaces\ISyntaxValidator.cs" />
     <Compile Include="SymbolsTable.cs" />
     <Compile Include="ISymbolsTable.cs" />
+    <Compile Include="IControlFlow.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

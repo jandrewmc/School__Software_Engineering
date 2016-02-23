@@ -16,15 +16,18 @@ namespace JazInterpreter
 			Stack.Push(value);
 		}
 
-		public void RValue(Identifier identifier) {
-			Stack.Push(identifier.Value);
+		public void RValue(string identifier, int level) {
+			int value = 0;
+			SymbolsTable.variableTable [level].TryGetValue (identifier, out value);
+			Stack.Push(value);
 		}
 
-		public void LValue(Identifier identifier) {
+		public void LValue(string identifier) {
 			Stack.Push(identifier);
 		}
 
-		public void Pop() {
+		public void Pop() 
+		{
 			if (Stack.Count == 0) {
 				throw new UnderflowException();
 			}
