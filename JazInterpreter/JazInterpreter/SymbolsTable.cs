@@ -5,49 +5,38 @@ namespace JazInterpreter
 {
 	public class SymbolsTable : ISymbolsTable
 	{
-		public static Dictionary<string, int>[] variableTable;
+		public static List<List<Identifier>> variableTable;
 		public static Dictionary<string, int> labelTable;
 
 		public static void initializeSymbolsTable()
 		{
-			//TODO: maximum supported symbols table depth is currently 20
-			variableTable = new Dictionary<string,int>[] 
-			{
-				new Dictionary<string, int> (),
-				new Dictionary<string, int> (),
-				new Dictionary<string, int> (),
-				new Dictionary<string, int> (),
-				new Dictionary<string, int> (),
-				new Dictionary<string, int> (),
-				new Dictionary<string, int> (),
-				new Dictionary<string, int> (),
-				new Dictionary<string, int> (),
-				new Dictionary<string, int> (),
-				new Dictionary<string, int> (),
-				new Dictionary<string, int> (),
-				new Dictionary<string, int> (),
-				new Dictionary<string, int> (),
-				new Dictionary<string, int> (),
-				new Dictionary<string, int> (),
-				new Dictionary<string, int> (),
-				new Dictionary<string, int> (),
-				new Dictionary<string, int> (),
-				new Dictionary<string, int> ()
-			};
+			variableTable = new List<List<Identifier>> ();
 			labelTable = new Dictionary<string, int> ();			
+		}
+
+		private static void addLevel(int currentLevel)
+		{
+			int addedLevel = currentLevel + 1;
+
+			variableTable.Add(new List<Identifier>());
+
+			foreach(var identifier in variableTable[currentLevel])
+				variableTable[addedLevel].Add((Identifier)identifier.Clone());
 		}
 
 		private static void buildVariableTable(string[,] code)
 		{
+			addLevel (0);
+
 			//every lvalue in the table
 			for (int i = 0; i < code.GetLength(0); i++)
 			{
 				if (code[i,0] == "lvalue")
 				{
-					for (int j = 0; j < variableTable.GetLength(0); j++)
-					{
-						variableTable [j].Add (code [i, 1], 0);
-					}
+					variableTable [0].Add (new Identifier {
+						Value = 0,
+						Name = code [i, 1]
+					});
 				}
 			}
 		}

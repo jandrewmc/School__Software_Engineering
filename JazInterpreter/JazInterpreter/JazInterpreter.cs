@@ -24,7 +24,6 @@ namespace JazInterpreter
 			return filename;
 		}
 
-
 		public static void Main(string[] args) 
 		{
 			StackManipulation stack = new StackManipulation ();
@@ -72,16 +71,17 @@ namespace JazInterpreter
 					instructionPointer = ControlFlow.Goto (array [instructionPointer, 1]);
 					break;
 				case "gofalse":
-					if (!relOpResult)
+					if (Convert.ToBoolean(stack.Peek ()))
 						instructionPointer = ControlFlow.Gofalse (array [instructionPointer, 1]);
+					stack.Pop ();
 					break;
 				case "gotrue":
-					if (relOpResult)
+					if (Convert.ToBoolean(stack.Peek ()))
 						instructionPointer = ControlFlow.Gotrue (array [instructionPointer, 1]);
+					stack.Pop ();
 					break;
 				case "halt":
-					//TODO: not sure how to handle this yet
-					break;
+					return;
 				case "+":
 					arOp.Add ();
 					break;

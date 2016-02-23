@@ -18,7 +18,6 @@ namespace JazInterpreter
 
 		public void RValue(string identifier, int level) {
 			int value = 0;
-			SymbolsTable.variableTable [level].TryGetValue (identifier, out value);
 			Stack.Push(value);
 		}
 

@@ -16,7 +16,7 @@ namespace JazInterpreter
 			int firstValue = PeekAndPop ();
 			int secondValue = PeekAndPop ();
 
-			return Tuple.Create (firstValue, secondValue);
+			return Tuple.Create (secondValue, firstValue);
 		}
 
 		private int PeekAndPop()
@@ -31,42 +31,42 @@ namespace JazInterpreter
 		{
 			var values = GetTopTwoValues ();
 
-			return values.Item2 == values.Item1;
+			return values.Item1 == values.Item2;
 		}
 
 		public bool lessThanOrEqualTo()
 		{
 			var values = GetTopTwoValues ();
 
-			return values.Item2 <= values.Item1;
+			return values.Item1 <= values.Item2;
 		}
 
 		public bool greaterThanOrEqualTo()
 		{
 			var values = GetTopTwoValues ();
 
-			return values.Item2 >= values.Item1;
+			return values.Item1 >= values.Item2;
 		}
 
 		public bool lessThan()
 		{
 			var values = GetTopTwoValues ();
 
-			return values.Item2 < values.Item1;
+			return values.Item1 < values.Item2;
 		}
 
 		public bool greaterThan()
 		{
 			var values = GetTopTwoValues ();
 
-			return values.Item2 > values.Item1;
+			return values.Item1 > values.Item2;
 		}
 
 		public bool otherEqual()
 		{
 			var values = GetTopTwoValues ();
 
-			return values.Item2 == values.Item1;
+			return values.Item1 == values.Item2;
 		}
 	}
 }
