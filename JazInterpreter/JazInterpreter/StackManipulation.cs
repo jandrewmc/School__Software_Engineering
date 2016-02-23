@@ -16,13 +16,12 @@ namespace JazInterpreter
 			Stack.Push(value);
 		}
 
-		public void RValue(string identifier, int level) {
-			int value = 0;
-			Stack.Push(value);
+		public void RValue(Identifier identifier) {
+			Stack.Push(identifier);
 		}
 
-		public void LValue(string identifier) {
-			Stack.Push(identifier);
+		public void LValue(Identifier identifier) {
+			Stack.Push(identifier.Value);
 		}
 
 		public void Pop() 

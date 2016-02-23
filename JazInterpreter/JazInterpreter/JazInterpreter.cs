@@ -48,18 +48,18 @@ namespace JazInterpreter
 					stack.Push (Int32.Parse(array [instructionPointer, 1]));
 					break;
 				case "rvalue":
-					//TODO:  Not sure about this
-					stack.RValue (array [instructionPointer, 1], currentLevel);
+					Identifier identifier = SymbolsTable.variableTable[currentLevel].Find(x => x.Name == array [instructionPointer, 1]);
+					stack.RValue (identifier);
 					break;
 				case "lvalue":
-					//TODO: Not sure about this
-					stack.LValue (array [instructionPointer, 1]);
+					Identifier identifier2 = SymbolsTable.variableTable[currentLevel].Find(x => x.Name == array [instructionPointer, 1]);
+					stack.LValue (identifier2);
 					break;
 				case "pop":
 					stack.Pop ();
 					break;
 				case ":=":
-					//TODO:  need to figure this one out
+					stack.ColonEquals ();
 					break;
 				case "copy":
 					stack.Copy ();
@@ -143,6 +143,7 @@ namespace JazInterpreter
 					//TODO: gonna be ugly
 					break;
 				default:
+					System.Console.WriteLine ("YOU DID SOMETHING VERY BAD");
 					break;
 				}
 				instructionPointer++;
