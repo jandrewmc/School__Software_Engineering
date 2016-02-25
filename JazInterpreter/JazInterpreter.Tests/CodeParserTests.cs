@@ -4,15 +4,15 @@ using Rhino.Mocks;
 
 namespace JazInterpreter.Tests
 {
-	[TestFixture]
-	public class CodeParserTests
-	{ 
-		CodeParser parser;
+    [TestFixture]
+    public class CodeParserTests
+    {
+        CodeParser parser;
 
-		[SetUp]
-		public void SetUp() 
-		{
-			parser = new CodeParser ();
-		}
-	}
+        [SetUp]
+        public void SetUp()
+        {
+            parser = new CodeParser();
+        }
+    }
 }

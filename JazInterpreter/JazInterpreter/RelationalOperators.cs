@@ -27,46 +27,51 @@ namespace JazInterpreter
             return value;
         }
 
-        public bool equal()
+        public void equal()
         {
             var values = GetTopTwoValues();
 
-            return values.Item1 == values.Item2;
+            PushBooleanToStack(values.Item1 == values.Item2);
         }
 
-        public bool lessThanOrEqualTo()
+        private void PushBooleanToStack(bool value)
         {
-            var values = GetTopTwoValues();
-
-            return values.Item1 <= values.Item2;
+            StackManipulation.Push(Convert.ToInt32(value));
         }
 
-        public bool greaterThanOrEqualTo()
+        public void lessThanOrEqualTo()
         {
             var values = GetTopTwoValues();
 
-            return values.Item1 >= values.Item2;
+            PushBooleanToStack(values.Item1 <= values.Item2);
         }
 
-        public bool lessThan()
+        public void greaterThanOrEqualTo()
         {
             var values = GetTopTwoValues();
 
-            return values.Item1 < values.Item2;
+            PushBooleanToStack(values.Item1 >= values.Item2);
         }
 
-        public bool greaterThan()
+        public void lessThan()
         {
             var values = GetTopTwoValues();
 
-            return values.Item1 > values.Item2;
+            PushBooleanToStack(values.Item1 < values.Item2);
         }
 
-        public bool otherEqual()
+        public void greaterThan()
         {
             var values = GetTopTwoValues();
 
-            return values.Item1 == values.Item2;
+            PushBooleanToStack(values.Item1 > values.Item2);
+        }
+
+        public void notEqual()
+        {
+            var values = GetTopTwoValues();
+
+            PushBooleanToStack(values.Item1 != values.Item2);
         }
     }
 }

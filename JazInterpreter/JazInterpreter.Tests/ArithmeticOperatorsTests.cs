@@ -4,67 +4,73 @@ using Rhino.Mocks;
 
 namespace JazInterpreter.Tests
 {
-	[TestFixture]
-	public class ArithmeticOperatorsTests
-	{
-		private IStackManipulation stackManipulation;
-		private IArithmeticOperators operators;
+    [TestFixture]
+    public class ArithmeticOperatorsTests
+    {
+        private IStackManipulation stackManipulation;
+        private IArithmeticOperators operators;
 
-		[SetUp]
-		public void SetUp() {
-			stackManipulation = MockRepository.GenerateMock<IStackManipulation>();
-			operators = new ArithmeticOperators(stackManipulation);
-		}
+        [SetUp]
+        public void SetUp()
+        {
+            stackManipulation = MockRepository.GenerateMock<IStackManipulation>();
+            operators = new ArithmeticOperators(stackManipulation);
+        }
 
-		[Test]
-		public void AddAddsTheTopTwoValuesOnTheStack() {
-			stackManipulation.Expect(x => x.Peek()).Repeat.Once().Return(5);
-			stackManipulation.Expect(x => x.Peek()).Repeat.Once().Return(15);
+        [Test]
+        public void AddAddsTheTopTwoValuesOnTheStack()
+        {
+            stackManipulation.Expect(x => x.Peek()).Repeat.Once().Return(5);
+            stackManipulation.Expect(x => x.Peek()).Repeat.Once().Return(15);
 
-			operators.Add();
+            operators.Add();
 
 
-			stackManipulation.AssertWasCalled(x => x.Push(Arg<int>.Is.Equal(20)));
-		}
+            stackManipulation.AssertWasCalled(x => x.Push(Arg<int>.Is.Equal(20)));
+        }
 
-		[Test]
-		public void SubtractSubtractsTheTopTwoValuesOnTheStack() {
-			stackManipulation.Expect(x => x.Peek()).Repeat.Once().Return(10);
-			stackManipulation.Expect(x => x.Peek()).Repeat.Once().Return(50);
+        [Test]
+        public void SubtractSubtractsTheTopTwoValuesOnTheStack()
+        {
+            stackManipulation.Expect(x => x.Peek()).Repeat.Once().Return(10);
+            stackManipulation.Expect(x => x.Peek()).Repeat.Once().Return(50);
 
-			operators.Subtract();
+            operators.Subtract();
 
-			stackManipulation.AssertWasCalled(x => x.Push(Arg<int>.Is.Equal(40)));
-		}
+            stackManipulation.AssertWasCalled(x => x.Push(Arg<int>.Is.Equal(40)));
+        }
 
-		[Test]
-		public void MultiplyMultipliesTheTopTwoValuesOnTheStack() {
-			stackManipulation.Expect(x => x.Peek()).Repeat.Once().Return(10);
-			stackManipulation.Expect(x => x.Peek()).Repeat.Once().Return(20);
+        [Test]
+        public void MultiplyMultipliesTheTopTwoValuesOnTheStack()
+        {
+            stackManipulation.Expect(x => x.Peek()).Repeat.Once().Return(10);
+            stackManipulation.Expect(x => x.Peek()).Repeat.Once().Return(20);
 
-			operators.Multiply();
+            operators.Multiply();
 
-			stackManipulation.AssertWasCalled(x => x.Push(Arg<int>.Is.Equal(200)));
-		}
+            stackManipulation.AssertWasCalled(x => x.Push(Arg<int>.Is.Equal(200)));
+        }
 
-		[Test]
-		public void DivideDividesTheTopTwoValuesOnTheStack() {
-			stackManipulation.Expect(x => x.Peek()).Repeat.Once().Return(10);
-			stackManipulation.Expect(x => x.Peek()).Repeat.Once().Return(31);
+        [Test]
+        public void DivideDividesTheTopTwoValuesOnTheStack()
+        {
+            stackManipulation.Expect(x => x.Peek()).Repeat.Once().Return(10);
+            stackManipulation.Expect(x => x.Peek()).Repeat.Once().Return(31);
 
-			operators.Divide();
+            operators.Divide();
 
-			stackManipulation.AssertWasCalled(x => x.Push(Arg<int>.Is.Equal(3)));
-		}
+            stackManipulation.AssertWasCalled(x => x.Push(Arg<int>.Is.Equal(3)));
+        }
 
-		[Test]
-		public void ModCalculatesTheModulusOfTheTopTwoValuesOnTheStack() {
-			stackManipulation.Expect(x => x.Peek()).Repeat.Once().Return(10);
-			stackManipulation.Expect(x => x.Peek()).Repeat.Once().Return(38);
+        [Test]
+        public void ModCalculatesTheModulusOfTheTopTwoValuesOnTheStack()
+        {
+            stackManipulation.Expect(x => x.Peek()).Repeat.Once().Return(10);
+            stackManipulation.Expect(x => x.Peek()).Repeat.Once().Return(38);
 
-			operators.Mod();
+            operators.Mod();
 
-			stackManipulation.AssertWasCalled(x => x.Push(Arg<int>.Is.Equal(8)));
-		}
-	}
+            stackManipulation.AssertWasCalled(x => x.Push(Arg<int>.Is.Equal(8)));
+        }
+    }
 }

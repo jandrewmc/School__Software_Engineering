@@ -2,19 +2,19 @@
 
 namespace JazInterpreter
 {
-	public interface IRelationalOperators
-	{
-		bool equal();
+    public interface IRelationalOperators
+    {
+        void equal();
 
-		bool lessThanOrEqualTo();
+        void lessThanOrEqualTo();
 
-		bool greaterThanOrEqualTo();
+        void greaterThanOrEqualTo();
 
-		bool lessThan();
+        void lessThan();
 
-		bool greaterThan();
+        void greaterThan();
 
-		bool otherEqual();
-	}
+        void notEqual();
+    }
 }
 

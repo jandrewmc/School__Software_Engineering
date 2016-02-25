@@ -2,7 +2,7 @@
 
 namespace JazInterpreter
 {
-    public class Output :IOutput
+    public class Output : IOutput
     {
         private readonly IStackManipulation stackManipulation;
 
