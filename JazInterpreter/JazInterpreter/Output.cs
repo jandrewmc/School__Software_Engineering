@@ -11,17 +11,16 @@ namespace JazInterpreter
             this.stackManipulation = stackManipulation;
         }
 
-        private int PeekAndPop()
+        private int Peek()
         {
             int value = (int)stackManipulation.Peek();
-            stackManipulation.Pop();
 
             return value;
         }
 
         public void print()
         {
-            System.Console.WriteLine(PeekAndPop());
+            System.Console.WriteLine(Peek());
         }
 
         public void show(string line)

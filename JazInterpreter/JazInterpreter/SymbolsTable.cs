@@ -14,7 +14,7 @@ namespace JazInterpreter
 			labelTable = new Dictionary<string, int> ();			
 		}
 
-		private static void addLevel(int currentLevel)
+		public static void addLevel(int currentLevel)
 		{
 			int addedLevel = currentLevel + 1;
 
@@ -58,7 +58,7 @@ namespace JazInterpreter
 		{
 			initializeSymbolsTable ();
 
-			buildSymbolTable (code);
+			buildVariableTable (code);
 			buildLabelTable (code);
 		}
 	}

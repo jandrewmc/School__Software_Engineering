@@ -47,6 +47,14 @@ namespace JazInterpreter
             return Stack.Peek();
         }
 
+		public int PeekAndPop()
+		{
+			int value = (int)Peek();
+			Pop();
+
+			return value;
+		}
+
         public void ColonEquals()
         {
             try

@@ -43,6 +43,8 @@ namespace JazInterpreter
 
             int instructionPointer = 0;
             int currentLevel = 0;
+			bool isAfterBeginButBeforeCall = false;
+			bool isAfterCallButBeforeEnd = false;
 
             while (true)
             {
@@ -52,12 +54,28 @@ namespace JazInterpreter
                         stack.Push(Int32.Parse(array[instructionPointer, 1]));
                         break;
                     case "rvalue":
-                        Identifier identifier = SymbolsTable.variableTable[currentLevel].Find(x => x.Name == array[instructionPointer, 1]);
-                        stack.RValue(identifier);
+						if (isAfterCallButBeforeEnd)
+						{
+							Identifier identifier = SymbolsTable.variableTable[currentLevel + 1].Find(x => x.Name == array[instructionPointer, 1]);
+							stack.RValue(identifier);		
+						}
+						else
+						{
+					   		Identifier identifier = SymbolsTable.variableTable[currentLevel].Find(x => x.Name == array[instructionPointer, 1]);
+                       		stack.RValue(identifier);	
+						}
                         break;
                     case "lvalue":
-                        Identifier identifier2 = SymbolsTable.variableTable[currentLevel].Find(x => x.Name == array[instructionPointer, 1]);
-                        stack.LValue(identifier2);
+					if (isAfterBeginButBeforeCall)
+						{
+							Identifier identifier2 = SymbolsTable.variableTable[currentLevel + 1].Find(x => x.Name == array[instructionPointer, 1]);
+							stack.LValue(identifier2);		
+						}
+						else
+						{
+							Identifier identifier2 = SymbolsTable.variableTable[currentLevel].Find(x => x.Name == array[instructionPointer, 1]);
+							stack.LValue(identifier2);	
+						}
                         break;
                     case "pop":
                         stack.Pop();
@@ -69,13 +87,12 @@ namespace JazInterpreter
                         stack.Copy();
                         break;
                     case "label":
-                        System.Console.Write("SHOULDNT GET HERE");
                         break;
                     case "goto":
                         instructionPointer = ControlFlow.Goto(array[instructionPointer, 1]);
                         break;
                     case "gofalse":
-                        if (Convert.ToBoolean(stack.Peek()))
+                        if (!Convert.ToBoolean(stack.Peek()))
                             instructionPointer = ControlFlow.Gofalse(array[instructionPointer, 1]);
                         stack.Pop();
                         break;
@@ -134,18 +151,36 @@ namespace JazInterpreter
                     case "show":
                         output.show(array[instructionPointer, 1]);
                         break;
-                    case "begin":
-					//TODO: gonna be ugly
+				case "begin":
+					isAfterBeginButBeforeCall = true;
+					SymbolsTable.addLevel (currentLevel);
+
                         break;
-                    case "end":
-					//TODO: gonna be ugly
+				case "end":
+						//need to remove level
+					SymbolsTable.variableTable.RemoveAt (currentLevel + 1);
+						isAfterBeginButBeforeCall = false;
+						isAfterCallButBeforeEnd = false;
                         break;
-                    case "return":
-					//TODO: gonna be ugly
+				case "return":
+					//return needs to decrement the leve and restore everything
+					currentLevel--;
+					instructionPointer = stack.PeekAndPop ();
+					isAfterBeginButBeforeCall = false;
+					isAfterCallButBeforeEnd = true;
                         break;
-                    case "call":
-					//TODO: gonna be ugly
+				case "call":
+					//call needs to save the current instruction pointer, set the instruction pointer to the next level,
+					//increment the level, reset the boolean flags
+					stack.Push (instructionPointer);
+					isAfterBeginButBeforeCall = false;
+					isAfterCallButBeforeEnd = false;
+					currentLevel++;
+					instructionPointer = SymbolsTable.labelTable [array [instructionPointer, 1]];
+
                         break;
+				case "":
+					break;
                     default:
                         System.Console.WriteLine("YOU DID SOMETHING VERY BAD");
                         break;
