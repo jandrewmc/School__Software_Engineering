@@ -1,10 +1,8 @@
-﻿using System;
-
-namespace JazInterpreter
+﻿namespace JazInterpreter.Interfaces
 {
 	public interface IAnalyzer
 	{
-		void analyze(string[,] code);
+		void Analyze(string[,] code);
 	}
 }
 

@@ -1,14 +1,11 @@
 ﻿using System;
+using JazInterpreter.Interfaces;
 
 namespace JazInterpreter
 {
     public class SyntaxValidator : ISyntaxValidator
     {
-        public SyntaxValidator()
-        {
-        }
-
-        private void checkForMatchingLabels(string[,] code)
+        private static void CheckForMatchingLabels(string[,] code)
         {
             for (int i = 0; i < code.GetLength(0); i++)
             {
@@ -35,7 +32,7 @@ namespace JazInterpreter
             }
         }
 
-        private void checkForMatchingBeginAndEndStatements(string[,] code)
+        private static void CheckForMatchingBeginAndEndStatements(string[,] code)
         {
             int count = 0;
             int callCount = 0;
@@ -51,7 +48,6 @@ namespace JazInterpreter
                     if (callCount > 1)
                     {
                         throw new SyntaxError("More than one call contained in a begin/end block");
-                        System.Console.WriteLine("error in call count");
                     }
                     callCount = 0;
                 }
@@ -68,14 +64,14 @@ namespace JazInterpreter
             if (count != 0)
             {
                 //TODO: Throw an Error
-                System.Console.WriteLine("You majorly broke it");
+                Console.WriteLine("You majorly broke it");
             }
         }
 
-        public void validate(string[,] code)
+        public void Validate(string[,] code)
         {
-            checkForMatchingLabels(code);
-            checkForMatchingBeginAndEndStatements(code);
+            CheckForMatchingLabels(code);
+            CheckForMatchingBeginAndEndStatements(code);
         }
     }
 }

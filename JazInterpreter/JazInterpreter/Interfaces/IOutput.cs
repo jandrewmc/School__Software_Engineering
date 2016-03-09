@@ -1,12 +1,10 @@
-﻿using System;
-
-namespace JazInterpreter
+﻿namespace JazInterpreter.Interfaces
 {
 	public interface IOutput
 	{
-		void print();
+		void Print();
 
-		void show(string line);
+		void Show(string line);
 	}
 }
 

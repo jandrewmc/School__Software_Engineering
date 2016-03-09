@@ -1,4 +1,5 @@
 ﻿using System;
+using JazInterpreter.Interfaces;
 
 namespace JazInterpreter
 {
@@ -18,14 +19,14 @@ namespace JazInterpreter
             return value;
         }
 
-        public void print()
+        public void Print()
         {
-            System.Console.WriteLine(Peek());
+            Console.WriteLine(Peek());
         }
 
-        public void show(string line)
+        public void Show(string line)
         {
-            System.Console.WriteLine(line);
+            Console.WriteLine(line);
         }
     }
 }

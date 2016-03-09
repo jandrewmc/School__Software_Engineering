@@ -12,13 +12,13 @@ namespace JazInterpreter
             {
                 while (true)
                 {
-                    System.Console.Write("Please enter the location of the file you wish to interpret: ");
-                    filename = System.Console.ReadLine();
+                    Console.Write("Please enter the location of the file you wish to interpret: ");
+                    filename = Console.ReadLine();
                     if (System.IO.File.Exists(filename))
                     {
                         break;
                     }
-                    System.Console.WriteLine("That file does not exist!");
+                    Console.WriteLine("That file does not exist!");
                 }
 
             }
@@ -38,8 +38,8 @@ namespace JazInterpreter
             Output output = new Output(stack);
 
             string filename = (new JazInterpreter()).getFileName(args);
-            string[,] array = (new CodeParser()).parse(filename);
-            (new Analyzer()).analyze(array);
+            string[,] array = (new CodeParser()).Parse(filename);
+            (new Analyzer()).Analyze(array);
 
             int instructionPointer = 0;
             int currentLevel = 0;
@@ -56,24 +56,24 @@ namespace JazInterpreter
                     case "rvalue":
 						if (isAfterCallButBeforeEnd)
 						{
-							Identifier identifier = SymbolsTable.variableTable[currentLevel + 1].Find(x => x.Name == array[instructionPointer, 1]);
+							Identifier identifier = SymbolsTable.VariableTable[currentLevel + 1].Find(x => x.Name == array[instructionPointer, 1]);
 							stack.RValue(identifier);		
 						}
 						else
 						{
-					   		Identifier identifier = SymbolsTable.variableTable[currentLevel].Find(x => x.Name == array[instructionPointer, 1]);
+					   		Identifier identifier = SymbolsTable.VariableTable[currentLevel].Find(x => x.Name == array[instructionPointer, 1]);
                        		stack.RValue(identifier);	
 						}
                         break;
                     case "lvalue":
 					if (isAfterBeginButBeforeCall)
 						{
-							Identifier identifier2 = SymbolsTable.variableTable[currentLevel + 1].Find(x => x.Name == array[instructionPointer, 1]);
+							Identifier identifier2 = SymbolsTable.VariableTable[currentLevel + 1].Find(x => x.Name == array[instructionPointer, 1]);
 							stack.LValue(identifier2);		
 						}
 						else
 						{
-							Identifier identifier2 = SymbolsTable.variableTable[currentLevel].Find(x => x.Name == array[instructionPointer, 1]);
+							Identifier identifier2 = SymbolsTable.VariableTable[currentLevel].Find(x => x.Name == array[instructionPointer, 1]);
 							stack.LValue(identifier2);	
 						}
                         break;
@@ -128,37 +128,37 @@ namespace JazInterpreter
                         loOp.Or();
                         break;
                     case "<>":
-                        relOp.notEqual();				
+                        relOp.NotEqual();				
                         break;
                     case "<=":
-                        relOp.lessThanOrEqualTo();
+                        relOp.LessThanOrEqualTo();
                         break;
                     case ">=":
-                        relOp.greaterThanOrEqualTo();
+                        relOp.GreaterThanOrEqualTo();
                         break;
                     case "<":
-                        relOp.lessThan();
+                        relOp.LessThan();
                         break;
                     case ">":
-                        relOp.greaterThan();
+                        relOp.GreaterThan();
                         break;
                     case "=":
-                        relOp.equal();
+                        relOp.Equal();
                         break;
                     case "print":
-                        output.print();
+                        output.Print();
                         break;
                     case "show":
-                        output.show(array[instructionPointer, 1]);
+                        output.Show(array[instructionPointer, 1]);
                         break;
 				case "begin":
 					isAfterBeginButBeforeCall = true;
-					SymbolsTable.addLevel (currentLevel);
+					SymbolsTable.AddLevel (currentLevel);
 
                         break;
 				case "end":
 						//need to remove level
-					SymbolsTable.variableTable.RemoveAt (currentLevel + 1);
+					SymbolsTable.VariableTable.RemoveAt (currentLevel + 1);
 						isAfterBeginButBeforeCall = false;
 						isAfterCallButBeforeEnd = false;
                         break;
@@ -176,13 +176,13 @@ namespace JazInterpreter
 					isAfterBeginButBeforeCall = false;
 					isAfterCallButBeforeEnd = false;
 					currentLevel++;
-					instructionPointer = SymbolsTable.labelTable [array [instructionPointer, 1]];
+					instructionPointer = SymbolsTable.LabelTable [array [instructionPointer, 1]];
 
                         break;
 				case "":
 					break;
                     default:
-                        System.Console.WriteLine("YOU DID SOMETHING VERY BAD");
+                        Console.WriteLine("YOU DID SOMETHING VERY BAD");
                         break;
                 }
                 instructionPointer++;

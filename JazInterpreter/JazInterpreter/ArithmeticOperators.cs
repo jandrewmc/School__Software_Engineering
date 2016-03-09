@@ -1,4 +1,5 @@
 ﻿using System;
+using JazInterpreter.Interfaces;
 
 namespace JazInterpreter
 {

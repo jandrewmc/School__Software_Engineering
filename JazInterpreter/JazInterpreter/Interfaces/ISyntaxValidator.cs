@@ -1,10 +1,8 @@
-﻿using System;
-
-namespace JazInterpreter
+﻿namespace JazInterpreter.Interfaces
 {
 	public interface ISyntaxValidator
 	{
-		void validate(string[,] code);
+		void Validate(string[,] code);
 	}
 }
 

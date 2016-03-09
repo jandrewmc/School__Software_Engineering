@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace JazInterpreter
+﻿namespace JazInterpreter.Interfaces
 {
 	public interface ISymbolsTable
 	{

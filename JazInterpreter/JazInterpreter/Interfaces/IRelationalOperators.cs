@@ -1,20 +1,18 @@
-﻿using System;
-
-namespace JazInterpreter
+﻿namespace JazInterpreter.Interfaces
 {
     public interface IRelationalOperators
     {
-        void equal();
+        void Equal();
 
-        void lessThanOrEqualTo();
+        void LessThanOrEqualTo();
 
-        void greaterThanOrEqualTo();
+        void GreaterThanOrEqualTo();
 
-        void lessThan();
+        void LessThan();
 
-        void greaterThan();
+        void GreaterThan();
 
-        void notEqual();
+        void NotEqual();
     }
 }
 

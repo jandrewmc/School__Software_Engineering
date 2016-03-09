@@ -10,7 +10,7 @@ namespace JazInterpreter
 		{
 			return new Identifier {
 				Value = 0,
-				Name = this.Name
+				Name = Name
 			};
 		}
 	}

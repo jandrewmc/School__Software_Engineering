@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using NUnit.Framework;
 
 namespace JazInterpreter.Tests
@@ -109,10 +108,7 @@ namespace JazInterpreter.Tests
 
     class TestStackManipulation : StackManipulation
     {
-        public Stack InternalStack
-        {
-            get { return this.Stack; }
-        }
+        public Stack InternalStack => Stack;
     }
 }
 

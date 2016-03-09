@@ -1,17 +1,13 @@
-﻿using System;
+﻿using JazInterpreter.Interfaces;
 
 namespace JazInterpreter
 {
 	public class Analyzer : IAnalyzer
-	{ 
-		public Analyzer ()
+	{
+	    public void Analyze(string [,] code)
 		{
-		}
-
-		public void analyze(string [,] code)
-		{
-			(new SyntaxValidator ()).validate (code);
-			SymbolsTable.buildSymbolTable (code);
+			new SyntaxValidator ().Validate (code);
+			SymbolsTable.BuildSymbolTable (code);
 		}
 	}
 }

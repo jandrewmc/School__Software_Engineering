@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace JazInterpreter
+﻿namespace JazInterpreter.Interfaces
 {
 	public interface IControlFlow
 	{

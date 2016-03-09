@@ -1,4 +1,4 @@
-﻿using System;
+﻿using JazInterpreter.Interfaces;
 using NUnit.Framework;
 using Rhino.Mocks;
 
@@ -23,7 +23,7 @@ namespace JazInterpreter.Tests
             int expected = 10;
             stackManipulation.Expect(x => x.Peek()).Repeat.Once().Return(expected);
 
-            output.print();
+            output.Print();
 
             stackManipulation.AssertWasCalled(x => x.Pop());
         }

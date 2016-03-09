@@ -1,4 +1,4 @@
-﻿using System;
+﻿using JazInterpreter.Interfaces;
 using NUnit.Framework;
 
 namespace JazInterpreter.Tests
@@ -16,62 +16,62 @@ namespace JazInterpreter.Tests
         [Test]
         public void ValidateChecksGotoInstructions()
         {
-            string[,] code = new string[,] { { "goto", "foo" }, { "label", "bar" } };
+            string[,] code = { { "goto", "foo" }, { "label", "bar" } };
 
 
-            Assert.Throws<SyntaxError>(() => syntaxValidator.validate(code));
+            Assert.Throws<SyntaxError>(() => syntaxValidator.Validate(code));
         }
 
         [Test]
         public void ValidateChecksCallInstructions()
         {
-            string[,] code = new string[,] { { "call", "foo" }, { "label", "bar" } };
+            string[,] code = { { "call", "foo" }, { "label", "bar" } };
 
 
-            Assert.Throws<SyntaxError>(() => syntaxValidator.validate(code));
+            Assert.Throws<SyntaxError>(() => syntaxValidator.Validate(code));
         }
 
         [Test]
         public void ValidateChecksGoFalseInstructions()
         {
-            string[,] code = new string[,] { { "gofalse", "foo" }, { "label", "bar" } };
+            string[,] code = { { "gofalse", "foo" }, { "label", "bar" } };
 
 
-            Assert.Throws<SyntaxError>(() => syntaxValidator.validate(code));
+            Assert.Throws<SyntaxError>(() => syntaxValidator.Validate(code));
         }
 
         [Test]
         public void ValidateChecksGoTrueInstructions()
         {
-            string[,] code = new string[,] { { "gotrue", "foo" }, { "label", "bar" } };
+            string[,] code = { { "gotrue", "foo" }, { "label", "bar" } };
 
 
-            Assert.Throws<SyntaxError>(() => syntaxValidator.validate(code));
+            Assert.Throws<SyntaxError>(() => syntaxValidator.Validate(code));
         }
 
         [Test]
         public void ValidateThrowsASyntaxErrorWhenOnlyOneOfTheLabelsDoesNotExist()
         {
-            string[,] code = new string[,] { { "gotrue", "foo" }, { "label", "foo" }, { "gofalse", "baz" }, { "label", "whatsthis" } };
+            string[,] code = { { "gotrue", "foo" }, { "label", "foo" }, { "gofalse", "baz" }, { "label", "whatsthis" } };
 
 
-            Assert.Throws<SyntaxError>(() => syntaxValidator.validate(code));
+            Assert.Throws<SyntaxError>(() => syntaxValidator.Validate(code));
         }
 
         [Test]
         public void ValidateThrowsAnExceptionWhenThereIsAnotherBeginWithoutAnEnd()
         {
-            string[,] code = new string[,] { { "begin", "" }, { "begin", "" } };
+            string[,] code = { { "begin", "" }, { "begin", "" } };
 
-            Assert.Throws<SyntaxError>(() => syntaxValidator.validate(code));
+            Assert.Throws<SyntaxError>(() => syntaxValidator.Validate(code));
         }
 
         [Test]
         public void ValidateThrowsAnExceptionWhenThereIsAnotherEndWithoutABegin()
         {
-            string[,] code = new string[,] { { "end", "" }, { "end", "" } };
+            string[,] code = { { "end", "" }, { "end", "" } };
 
-            Assert.Throws<SyntaxError>(() => syntaxValidator.validate(code));
+            Assert.Throws<SyntaxError>(() => syntaxValidator.Validate(code));
         }
     }
 }

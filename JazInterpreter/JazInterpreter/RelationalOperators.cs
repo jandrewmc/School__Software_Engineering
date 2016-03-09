@@ -1,14 +1,15 @@
 ﻿using System;
+using JazInterpreter.Interfaces;
 
 namespace JazInterpreter
 {
     public class RelationalOperators : IRelationalOperators
     {
-        private readonly IStackManipulation StackManipulation;
+        private readonly IStackManipulation stackManipulation;
 
         public RelationalOperators(IStackManipulation stackManipulation)
         {
-            this.StackManipulation = stackManipulation;
+            this.stackManipulation = stackManipulation;
         }
 
         private Tuple<int, int> GetTopTwoValues()
@@ -21,13 +22,13 @@ namespace JazInterpreter
 
         private int PeekAndPop()
         {
-            int value = (int)StackManipulation.Peek();
-            StackManipulation.Pop();
+            int value = (int)stackManipulation.Peek();
+            stackManipulation.Pop();
 
             return value;
         }
 
-        public void equal()
+        public void Equal()
         {
             var values = GetTopTwoValues();
 
@@ -36,38 +37,38 @@ namespace JazInterpreter
 
         private void PushBooleanToStack(bool value)
         {
-            StackManipulation.Push(Convert.ToInt32(value));
+            stackManipulation.Push(Convert.ToInt32(value));
         }
 
-        public void lessThanOrEqualTo()
+        public void LessThanOrEqualTo()
         {
             var values = GetTopTwoValues();
 
             PushBooleanToStack(values.Item1 <= values.Item2);
         }
 
-        public void greaterThanOrEqualTo()
+        public void GreaterThanOrEqualTo()
         {
             var values = GetTopTwoValues();
 
             PushBooleanToStack(values.Item1 >= values.Item2);
         }
 
-        public void lessThan()
+        public void LessThan()
         {
             var values = GetTopTwoValues();
 
             PushBooleanToStack(values.Item1 < values.Item2);
         }
 
-        public void greaterThan()
+        public void GreaterThan()
         {
             var values = GetTopTwoValues();
 
             PushBooleanToStack(values.Item1 > values.Item2);
         }
 
-        public void notEqual()
+        public void NotEqual()
         {
             var values = GetTopTwoValues();
 

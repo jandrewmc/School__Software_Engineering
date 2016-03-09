@@ -1,10 +1,8 @@
-﻿using System;
-
-namespace JazInterpreter
+﻿namespace JazInterpreter.Interfaces
 {
 	public interface ICodeParser
 	{
-		string[,] parse(string filename);
+		string[,] Parse(string filename);
 	}
 }
 	

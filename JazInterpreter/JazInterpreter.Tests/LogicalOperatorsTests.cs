@@ -1,4 +1,4 @@
-﻿using System;
+﻿using JazInterpreter.Interfaces;
 using NUnit.Framework;
 using Rhino.Mocks;
 

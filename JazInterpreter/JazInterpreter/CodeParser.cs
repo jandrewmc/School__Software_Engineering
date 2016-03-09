@@ -1,14 +1,10 @@
-﻿using System;
+﻿using JazInterpreter.Interfaces;
 
 namespace JazInterpreter
 {
 	public class CodeParser : ICodeParser
 	{
-		public CodeParser ()
-		{
-		}
-
-		private int getFileLength(string filename)
+	    private int getFileLength(string filename)
 		{
 			//get number of lines in code that should be interpreted
 			System.IO.StreamReader file = new System.IO.StreamReader (filename);
@@ -19,7 +15,7 @@ namespace JazInterpreter
 			return count;
 		}
 
-		public string[,] parse(string filename)
+		public string[,] Parse(string filename)
 		{
 			//arrange code in inputfile into array.
 			string[,] array = new string[getFileLength(filename), 2];
@@ -29,7 +25,7 @@ namespace JazInterpreter
 			int count = 0;
 			while ((line = file2.ReadLine ()) != null) {
 				line = line.Trim ();
-				string[] tokens = line.Split (new char[] { ' ' }, 2);
+				string[] tokens = line.Split (new[] { ' ' }, 2);
 
 				if (tokens.Length == 2) {
 					array [count, 0] = tokens [0];

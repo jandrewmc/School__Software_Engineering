@@ -1,4 +1,4 @@
-﻿using System;
+﻿using JazInterpreter.Interfaces;
 using NUnit.Framework;
 using Rhino.Mocks;
 
@@ -22,7 +22,7 @@ namespace JazInterpreter.Tests
             int value = 10;
             stackManipulation.Expect(x => x.Peek()).Repeat.Twice().Return(value);
 
-            relationalOperators.equal();
+            relationalOperators.Equal();
 
             stackManipulation.AssertWasCalled(x => x.Push(Arg<int>.Is.Equal(1)));
         }
@@ -35,7 +35,7 @@ namespace JazInterpreter.Tests
             stackManipulation.Expect(x => x.Peek()).Repeat.Once().Return(firstValue);
             stackManipulation.Expect(x => x.Peek()).Repeat.Once().Return(secondValue);
 
-            relationalOperators.lessThanOrEqualTo();
+            relationalOperators.LessThanOrEqualTo();
 
             stackManipulation.AssertWasCalled(x => x.Push(Arg<int>.Is.Equal(1)));
         }
@@ -48,7 +48,7 @@ namespace JazInterpreter.Tests
             stackManipulation.Expect(x => x.Peek()).Repeat.Once().Return(firstValue);
             stackManipulation.Expect(x => x.Peek()).Repeat.Once().Return(secondValue);
 
-            relationalOperators.greaterThanOrEqualTo();
+            relationalOperators.GreaterThanOrEqualTo();
 
             stackManipulation.AssertWasCalled(x => x.Push(Arg<int>.Is.Equal(0)));
         }
@@ -61,7 +61,7 @@ namespace JazInterpreter.Tests
             stackManipulation.Expect(x => x.Peek()).Repeat.Once().Return(firstValue);
             stackManipulation.Expect(x => x.Peek()).Repeat.Once().Return(secondValue);
 
-            relationalOperators.lessThan();
+            relationalOperators.LessThan();
 
             stackManipulation.AssertWasCalled(x => x.Push(Arg<int>.Is.Equal(0)));
         }
@@ -74,7 +74,7 @@ namespace JazInterpreter.Tests
             stackManipulation.Expect(x => x.Peek()).Repeat.Once().Return(firstValue);
             stackManipulation.Expect(x => x.Peek()).Repeat.Once().Return(secondValue);
 
-            relationalOperators.greaterThan();
+            relationalOperators.GreaterThan();
 
             stackManipulation.AssertWasCalled(x => x.Push(Arg<int>.Is.Equal(1)));
         }
@@ -85,7 +85,7 @@ namespace JazInterpreter.Tests
             int value = 10;
             stackManipulation.Expect(x => x.Peek()).Repeat.Twice().Return(value);
 
-            relationalOperators.notEqual();
+            relationalOperators.NotEqual();
 
             stackManipulation.AssertWasCalled(x => x.Push(Arg<int>.Is.Equal(0)));
         }
