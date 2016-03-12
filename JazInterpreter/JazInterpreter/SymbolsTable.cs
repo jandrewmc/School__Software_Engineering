@@ -31,12 +31,14 @@ namespace JazInterpreter
 			//every lvalue in the table
 			for (int i = 0; i < code.GetLength(0); i++)
 			{
-				if (code[i,0] == "lvalue")
+				if (code[i,0] == "lvalue" || code[i, 0] == "rvalue")
 				{
-					VariableTable [0].Add (new Identifier {
-						Value = 0,
-						Name = code [i, 1]
-					});
+
+					if(!VariableTable[0].Exists(x=>x.Name == code[i, 1]))
+						VariableTable [0].Add (new Identifier {
+							Value = 0,
+							Name = code [i, 1]
+						});
 				}
 			}
 		}
