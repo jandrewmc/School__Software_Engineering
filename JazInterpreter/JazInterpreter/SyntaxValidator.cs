@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using JazInterpreter.Interfaces;
 
 namespace JazInterpreter
 {
     public class SyntaxValidator : ISyntaxValidator
     {
+		public List<string> validInstructions;
         private static void CheckForMatchingLabels(string[,] code)
         {
             for (int i = 0; i < code.GetLength(0); i++)
@@ -68,10 +70,59 @@ namespace JazInterpreter
             }
         }
 
+		private void CreateListOfValidInstructions()
+		{
+			validInstructions = new List<string> ();
+			validInstructions.Add ("push");
+			validInstructions.Add ("rvalue");
+			validInstructions.Add ("lvalue");
+			validInstructions.Add ("pop");
+			validInstructions.Add (":=");
+			validInstructions.Add ("copy");
+			validInstructions.Add ("label");
+			validInstructions.Add ("goto");
+			validInstructions.Add ("gofalse");
+			validInstructions.Add ("gotrue");
+			validInstructions.Add ("halt");
+			validInstructions.Add ("+");
+			validInstructions.Add ("-");
+			validInstructions.Add ("*");
+			validInstructions.Add ("/");
+			validInstructions.Add ("div");
+			validInstructions.Add ("&");
+			validInstructions.Add ("!");
+			validInstructions.Add ("|");
+			validInstructions.Add ("<>");
+			validInstructions.Add ("<=");
+			validInstructions.Add (">=");
+			validInstructions.Add ("<");
+			validInstructions.Add (">");
+			validInstructions.Add ("=");
+			validInstructions.Add ("print");
+			validInstructions.Add ("show");
+			validInstructions.Add ("begin");
+			validInstructions.Add ("end");
+			validInstructions.Add ("return");
+			validInstructions.Add ("call");
+			validInstructions.Add ("");
+		}
+
+		public void CheckForValidInstructions(string[,] code)
+		{
+			for (int i = 0; i < code.GetLength(0); i++)
+			{
+				string instruction = code [i, 0];
+				if (!validInstructions.Exists (x => x == instruction))
+					throw new SyntaxError ("Invalid instruction: " + instruction + "\non line: " + (i + 1) );
+			}
+		}
+
         public void Validate(string[,] code)
         {
+			CreateListOfValidInstructions ();
             CheckForMatchingLabels(code);
             CheckForMatchingBeginAndEndStatements(code);
+			CheckForValidInstructions (code);
         }
     }
 }
