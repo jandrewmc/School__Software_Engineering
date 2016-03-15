@@ -44,7 +44,6 @@
     <Compile Include="StackManipulationTests.cs" />
     <Compile Include="ArithmeticOperatorsTests.cs" />
     <Compile Include="LogicalOperatorsTests.cs" />
-    <Compile Include="CodeParserTests.cs" />
     <Compile Include="OutputTests.cs" />
     <Compile Include="RelationalOperatorsTests.cs" />
     <Compile Include="SyntaxValidatorTests.cs" />

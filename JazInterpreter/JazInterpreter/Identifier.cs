@@ -1,4 +1,6 @@
-﻿using System;
+﻿// custom value to store the variables 
+
+using System;
 
 namespace JazInterpreter
 {

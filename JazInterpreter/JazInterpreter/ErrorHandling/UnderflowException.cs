@@ -1,4 +1,6 @@
-﻿using System;
+﻿// custom stack underflow exception
+
+using System;
 
 namespace JazInterpreter
 {

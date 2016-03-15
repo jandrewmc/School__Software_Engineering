@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Enum containing exit codes
+
+using System;
 
 namespace JazInterpreter
 {

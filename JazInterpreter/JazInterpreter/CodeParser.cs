@@ -1,4 +1,6 @@
-﻿using JazInterpreter.Interfaces;
+﻿// The code parser parses the code into an array 
+
+using JazInterpreter.Interfaces;
 
 namespace JazInterpreter
 {
@@ -23,6 +25,7 @@ namespace JazInterpreter
 
 			System.IO.StreamReader file2 = new System.IO.StreamReader (filename);
 			int count = 0;
+
 			while ((line = file2.ReadLine ()) != null) {
 				line = line.Trim ();
 				string[] tokens = line.Split (new[] { ' ' }, 2);

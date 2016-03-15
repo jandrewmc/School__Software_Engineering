@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Custom exception for missing LValue
+
+using System;
 
 namespace JazInterpreter
 {

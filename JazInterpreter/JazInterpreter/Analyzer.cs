@@ -1,4 +1,6 @@
-﻿using JazInterpreter.Interfaces;
+﻿// The analyzer simply calles the validation method
+// as well as initializes the symbols table
+using JazInterpreter.Interfaces;
 
 namespace JazInterpreter
 {

@@ -1,4 +1,9 @@
-﻿using System;
+﻿// validates the syntax of the code read in from the file
+// Simple things like: there exists a label for go's and calls
+// matching begin and end statements,
+// and that the instructions given are valid
+
+using System;
 using System.Collections.Generic;
 using JazInterpreter.Interfaces;
 

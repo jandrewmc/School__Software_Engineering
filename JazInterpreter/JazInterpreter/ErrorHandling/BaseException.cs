@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Generic exception
+
+using System;
 
 namespace JazInterpreter
 {

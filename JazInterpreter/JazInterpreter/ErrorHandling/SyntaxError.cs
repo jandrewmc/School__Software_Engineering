@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Custom error for syntax validation
+
+using System;
 
 namespace JazInterpreter
 {

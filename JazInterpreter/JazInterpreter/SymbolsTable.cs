@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿// Builds the symbols table up front and
+// and adds the ability to add levels to it.
+
+using System.Collections.Generic;
 using JazInterpreter.Interfaces;
 
 namespace JazInterpreter
@@ -28,7 +31,7 @@ namespace JazInterpreter
 		{
 			AddLevel (0);
 
-			//every lvalue in the table
+			//every lvalue and rvalue in the table
 			for (int i = 0; i < code.GetLength(0); i++)
 			{
 				if (code[i,0] == "lvalue" || code[i, 0] == "rvalue")
